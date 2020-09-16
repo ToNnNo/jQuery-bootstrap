@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function(){
+            $('.modal-btn').click(function(){
+                let id = $(this).data('modalid');
+
+                $(`#${id}`).addClass('show');
+            });
+
+            $('.modal .close').click(function(){
+                $('.modal.show').removeClass('show');
+            });
+        });
+    </script>
+    <style>
+        :root{
+            --green: rgb(141, 221, 50);
+            --red: #f00;
+        }
+
+        * { box-sizing: border-box; }
+        body { font-family: Arial, Helvetica, sans-serif; font-size: 1rem; color: #333; }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            height: 89vh;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        main > nav {
+            width: 8.33333%;
+            padding: 0 15px;
+        }
+
+        main > section {
+            width: 91.66666%;
+            padding: 0 15px;
+        }
+
+        .navbar {
+            padding: 0 5px;
+            margin: 0;
+            background-color: black;
+            height: 100%;
+        }
+
+        .navbar > li {
+            list-style-type: none;
+        }
+
+        .navbar > li > a {
+            display: block;
+            padding: 5px 0;
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn { 
+            padding: 7px 10px;
+            border-radius: 3px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-green { 
+            border: 1px solid var(--green);
+            background-color: white;
+            color: var(--green);
+        }
+
+        .btn-green:hover {
+            background-color: var(--green);
+            color: white;
+        }
+
+        .btn-red { 
+            border: 1px solid var(--red);
+            background-color: white;
+            color: var(--red);
+        }
+
+        .btn-red:hover {
+            background-color: var(--red);
+            color: white;
+        }
+
+        .modal {
+            display: none; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.45);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content{
+            background-color: white;
+            border-radius: 3px;
+            width: 25%;
+        }
+
+        .modal-content > header {
+            border-bottom: 1px solid #ccc;
+            padding: 15px 10px;
+        }
+
+        .modal-content > header > * {
+            margin: 0;
+        }
+
+        .modal-content > .body {
+            padding: 0 10px;
+        }
+
+        .modal-content > footer {
+            border-top: 1px solid #ccc;
+            padding: 15px 10px;
+            text-align: right;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercices</h1>
+        <hr />
+    </header>
+    <main>
+        <nav>
+            <ul class="navbar">
+                <li>
+                    <a href="#">Accueil</a>
+                </li>
+                <li>
+                    <a href="#">A propos</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="#">Admin</a>
+                </li>
+            </ul>
+        </nav>
+        <section>
+            <div>
+                <button class="btn btn-green modal-btn" data-modalid="information">Page Modale</button>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="information">
+        <div class="modal-content">
+            <header>
+                <h3>Information</h3>
+            </header>
+            <div class="body">
+                <p>Hello World</p>
+            </div>
+            <footer>
+                <button class="btn btn-red close">Fermer</button>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

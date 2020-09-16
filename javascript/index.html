@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation de Javascript</title>
+    <!--script src="js/index.js"></script-->
+    <script>
+        // variables (permet de stocker une valeur)
+        // le mot clé "let" n'est utilisé que la première fois (à la déclaration)
+        let prenom = 'Stéphane'; // initialisation = déclaration + affectation
+        let nom; // déclaration
+        
+        prenom = 'Sibel'; // affectation
+
+        console.log('Bonjour');
+        console.log(prenom);
+
+        /**
+         * TYPE DE VALEUR
+         * 
+         * string (null | undefined)
+         * integer (0)
+         * float    (0.0)
+         * boolean (true/false) (false)
+         * 
+         * array    => key/value (clé numérique) ([])
+         * object   => key/value (clé alphabétique) ({}) - JSON: JavaScript Object Notation
+         */
+
+         let chaine = 'chaine de caractère';
+         let entier = 10;
+         let reel = 10.5;
+         let booleen = true; // false
+
+         let tableau = [];
+         let objet = {};
+
+        // concatenation (utilisé avec le caractère +) -> addition de chaine de caractère
+        let message = 'Bonjour ' + prenom + '. Comment allez vous ce matin ?';
+        console.log( message );
+
+        // JavaScript est normé par EcmaScript (es10)
+        // syntaxe de template de chaine de caractère
+        let m = `Aujourd'hui ${prenom} est présente pour la "formation Javascript"`; // ` backtilde
+        console.log(m);
+
+        // structure conditionnelles et iteratives
+        // le if
+
+        let age = 16;
+        // si conditions
+        if ( age >= 18 ) {
+            // alors si vrai
+            console.log('la personne est majeur.e');
+        } else {
+            // sinon si faux
+            console.log('la personne est mineur.e');
+        }
+
+        /**
+         * Opérateur conditionnel
+         * 
+         * >    supérieur
+         * <    inférieur
+         * >=   supérieur ou égal
+         * <=   inférieur ou égal
+         * ==   égal
+         * !=   différent (non égal)
+         * !    non 
+         */
+
+        /** 
+         * Opérateur logique
+         * 
+         * &&   et -> l'ensemble des conditions soient vrai pour que la condition soit vrai
+         * ||   ou -> au moins 1 condition vrai pour que la condition soit vrai
+         */
+
+         // if (a == 1 && b == 2) ... 
+         // if (a == 1 || b == 2) ... 
+        
+        // Afficher frais de port gratuit si le prix > 500 ou poids > 1000 (g) 
+        let prix = 500;
+        let poids = 699;
+
+        if (prix > 500 || poids > 1000) {
+            console.log('Frais de port gratuit');
+        } 
+
+        // Savoir si une valeur (numérique) est positive, négative ou égal à 0
+        // let entier = 10
+        entier = 0;
+        if (entier > 0) {
+            console.log(`${entier} est positif`);
+        } else if ( entier < 0 ) {
+            console.log(`${entier} est négatif`);
+        } else {
+            console.log(`${entier} == 0`);
+        }
+
+        // Exercice: 
+        // Afficher le texte
+        // très froid si la température < -10
+        // froid si la température est entre -10 et 0
+        // chaud si la température est entre 0 et 20
+        // très chaud si la température est > 20
+        
+        // condition ternaire
+        // ( conditions ) ? si vrai : si faux;
+
+        // switch
+        let date = new Date(); // Date() un objet
+        let jrs = date.getDay(); // pour récupérer une valeur de l'objet variable.method()
+        let jour = null; // string
+
+        switch(jrs){
+            case 1:
+                jour = 'Lundi';
+                break;
+            case 2:
+                jour = 'Mardi';
+                break;
+            case 3:
+                jour = 'Mercredi';
+                break;
+            default:
+                jour = 'en Week-end'; 
+        }
+
+        console.log(`Nous sommes ${jour}`);
+
+        // calcul
+        /**
+         * Opérateurs Mathématiques
+         * 
+         * +    addition
+         * -    soustraction
+         * *    multiplication
+         * /    division
+         * %    modulo (reste d'une division)
+         * 
+         * Opérateurs d'incrémentation
+         * ++   ajoute +1
+         * --   ajoute -1
+         */
+        
+        let number = 15;
+        if (number % 2 == 0) {
+            console.log(`la variable number (${number}) est paire`);
+        } else {
+            console.log(`la variable number (${number}) est impaire`);
+        }
+
+        number = number + 10;
+        console.log(`number = ${number}`); // 25
+
+        number += 10; // identique à number = number + 10
+        console.log(`number = ${number}`); // 35
+        
+        number *= 10; // number = number * 10
+        console.log(`number = ${number}`); // 350
+
+        let base = 'Bonjour ';
+        base += 'Stéphane';
+        console.log(base);
+
+        number = number + 1;    // 351
+        number += 1;            // 352
+        number++;               // 353
+        console.log(`number = ${number}`);
+
+        // ++a  -> incrémentation prioritaire
+        // a++  -> incrémentation non prioritaire
+
+        let a = 1;
+        console.log(++a); // 2
+        console.log(a++); // 2
+
+        let b = 1, c = 2;
+        console.log( ++b + c ); // 4
+        console.log( b++ + c ); // 4
+
+        // structures itératives
+        // for (utilisé quand le nombre d'iteration est connu)
+
+        for(let index = 0; index < 3; index++){
+            console.log( `index = ${index}` );
+        }
+
+        for(let i = 1; i <= 10; i++) {
+            console.log( `7 x ${i} = ${ 7*i }` );
+        }
+
+        // while (utilise quand la quantité d'itération n'est pas connu)
+        /*nom = prompt('Entrer un nom');
+        while( nom != 'fin' ){
+            console.log(`Bienvenu ${nom}`);
+            nom = prompt('Entrer un nom');
+        }*/
+
+        // tableau (indexé/numérique)
+        let liste = [
+            'Axel', 'Clément', 'Eric', 'Florian', 'Geoffrey', 'Gwenael',
+            'Jocelyn', 'Maxence', 'Natacha', 'Sibel', 'Simon', 'Tiphaine',
+            'Victor'
+        ];
+
+        liste[liste.length] = 'Le formateur';
+        liste[liste.length-1] = 'Stéphane';
+
+        liste[0] = 'Axel le Grand';
+
+        console.log( liste[0], liste[9] );
+
+        console.log( `Mon tableau contient ${liste.length} valeur.s` );
+
+        console.log( liste );
+        
+        // .forEach();
+        // for
+        // forin
+        // forof
+
+        for ( let nom of liste ) {
+            console.log( `Bienvenu ${nom}` );
+        }
+
+        months = [
+            'Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 
+            'Jui', 'Aou', 'Sept', 'Oct', 'Nov', 'Dec'
+        ];
+
+        console.log( `Nous sommes au mois de ${ months[ date.getMonth() ] }` );
+
+        notes = [
+            [10, 20, 15],
+            [9, 8, 4],
+            [20, 6, 14]
+        ];
+
+        console.log( `1er note du 1er élève: ${ notes[0][0] }`);
+        console.log( `4eme note du 1er élève: ${ notes[0][3] }`);
+
+        // fonctions
+        // Portion d'un programme executé uniquement quand il est appelé !
+        // fonction / procedure
+
+        // procedure (retourne rien)
+        function sayHello() {
+            console.log('Hello !');
+        }
+
+        // fonction (retourne une valeur)
+        // les paramètres a et b sont des variables
+        // les variables a et b n'existe que dans la fonction (scope)
+        // les variables de la fonction dans ce cas là, sont obligatoires
+        // NaN = Not a Number
+        function addition(a, b) {
+            return a + b;
+        }
+
+        sayHello();
+        let deux = 2;
+        let result = addition(1, deux);
+        console.log( result + 10 );
+
+        console.log( addition( addition(1, 1), addition(1, 1) ) ); // 4
+
+    </script>
+</head>
+<body>
+    <!-- balises html -->
+    <script></script>
+</body>
+</html>

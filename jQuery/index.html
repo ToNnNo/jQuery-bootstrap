@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script>
+        function callback() {
+            if( $(this).is(':visible') ) {
+                $('#showHideBtn').text('Masquer');
+            } else {
+                $('#showHideBtn').text('Afficher');
+            }
+        }
+
+        // $ = jquery
+        // javascript
+        $(function(){ 
+            // jquery / javascript
+            // 1 - selecteur jquery identique au selecteur css $()
+            $('header h1').css('color', '#f00');
+            
+            // 2 - interaction utilisateur (évènement)
+            $('#btn').click(function(){
+                alert('Bravo !');
+            });
+
+            $('#showHideBtn').click(function(){
+
+                /*if( $('#showHideContent').is(':visible') ) {
+                    $(this).text('Afficher');
+                    $('#showHideContent').hide();
+                } else {
+                    $(this).text('Masquer');
+                    $('#showHideContent').show();
+                }*/
+                
+                // la fonction anonyme (2eme paramètre) est une callback
+                $('#showHideContent').toggle(0, callback);
+            });
+
+            $('.close').click(function(){
+                $(this).parent().fadeOut();
+            });
+
+            $('#monImage').mouseover(function(){
+                $(this).attr('src', 'images/10.jpg');
+            }).mouseout(function(){
+                $(this).attr('src', 'images/9.jpg');
+            }).dblclick(function(){
+                let width = $(this).attr('width');
+
+                if ( width == '50%' ) {
+                    $(this).attr('width', '100%');
+                } else {
+                    $(this).attr('width', '50%');
+                }
+            });
+
+            // dblclick
+        });
+
+    </script>
+    <style>
+        .alert {
+            border: 1px solid #557dff;
+            border-radius: 3px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            color: #000;
+            background-color: #557dff88;
+            margin-bottom: 10px;
+        }
+        .alert span { 
+            color: #555;
+            cursor: pointer;
+        }
+
+        .imgResponsive {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>jQuery</h1>
+        <hr />
+    </header>
+    <div class="alert">
+        Information! Ceci est une alerte qui doit disparaitre
+        <span class="close">&times;</span>
+    </div>
+    <div class="alert">
+        Information! Ceci est une alerte qui doit disparaitre
+        <span class="close">&times;</span>
+    </div>
+    <article>
+        <h2>DOM</h2>
+        <p>
+            Le <strong>Document Object Model (DOM)</strong> est une interface de programmation 
+            normalisée par le W3C, qui permet à des scripts d'examiner et de 
+            modifier le contenu du navigateur web.
+        </p>
+        <figure>
+            <img src="images/dom.png" alt="arbre DOM" title="Arbre DOM" style="width:25%" />
+            <figcaption>Représentation d'un arbre DOM</figcaption>
+        </figure>
+    </article>
+    <hr />
+    <section>
+        <button id="btn">Cliquez ici</button>
+    </section>
+    <hr />
+    <section>
+        <button id="showHideBtn">Masquer</button>
+        <p id="showHideContent">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia repellat culpa nulla 
+            sapiente saepe laudantium molestiae, enim natus expedita labore quas maxime incidunt 
+            et, sequi consequatur possimus architecto delectus distinctio?
+        </p>
+    </section>
+    <hr />
+    <section>
+        
+        <img src="images/9.jpg" id="monImage" class="imgResponsive" alt="Monde Fantastique" title="Monde Fantastique" />
+
+    </section>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attribut Data-*</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function(){
+            $(".target").on('click', function(){
+                let color = $(this).data('color');
+                let bgcolor = $(this).data('bgcolor');
+
+                // $(this).css('color', color);
+
+                $(this).css({ 'color': color, 'background-color': bgcolor });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Attribut Data-*</h1>
+        <hr />
+    </header>
+    <section>
+
+        <p class="target" data-color="pink" data-bgcolor="black">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, 
+            quae fugiat hic labore saepe facilis eveniet harum possimus veniam
+            autem iste consequuntur reiciendis nobis, voluptatem sint voluptatum 
+            laboriosam nihil ad?
+        </p>
+
+        <p class="target" data-color="blue">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, 
+            quae fugiat hic labore saepe facilis eveniet harum possimus veniam
+            autem iste consequuntur reiciendis nobis, voluptatem sint voluptatum 
+            laboriosam nihil ad?
+        </p>
+
+    </section>
+</body>
+</html>

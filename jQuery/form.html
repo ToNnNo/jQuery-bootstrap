@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script>
+        function downEvent() {
+            $('#pwd').attr('type', 'text');
+        }
+
+        function upEvent() {
+            $('#pwd').attr('type', 'password');
+        }
+
+        $(function(){
+            /**
+             * Event keyboard
+             * keyup()
+             * keydown()
+             * keypress()
+             */
+
+             /**
+              * Insérer du texte dans une balise
+              * 
+              * .html()
+              * .text()
+              */
+
+            $('#texte').keyup(function(e) {
+                if(e.key == 'Enter') {
+                    let value = $(this).val();
+                
+                    $('#resultTexte').text( value ); // protection contre le xss
+                    // $('#resultTexte').html( value );
+                    
+                    // récupérer les cookies d'un domaine
+                    // console.log(document.cookie);
+                }                
+            });
+
+            $('#changeType')
+                .mousedown(downEvent).mouseup(upEvent)
+                .keydown(downEvent).keyup(upEvent);
+
+            $('#form').submit(function(e){
+                // preventDefault() = éviter/annuler/prevenir le fonctionnement par défaut
+
+                if( $('#nom').val().trim() == '' ) {
+                    e.preventDefault();
+                    $('#nom').addClass('error');
+                    $('#nom + .error-message').remove();
+                    $('#nom').parent().append('<span class="error-message">Le nom est obligatoire</span>');
+                }
+
+                if( $('#prenom').val().trim() == '' ) {
+                    e.preventDefault();
+                    $('#prenom').addClass('error');
+                    $('#prenom + .error-message').remove();
+                    $('#prenom').parent().append('<span class="error-message">Le prénom est obligatoire</span>');
+                }
+            });
+
+            // blur se déclenche quand on perd le focus 
+            $('#nom').blur(function(){
+                if( $('#nom').val().trim() != '' ) {
+                    $('#nom').removeClass('error');
+                    $('#nom + .error-message').remove();
+                }
+            });
+
+            $('#prenom').blur(function(){
+                if( $('#prenom').val().trim() != '' ) {
+                    $('#prenom').removeClass('error');
+                    $('#prenom + .error-message').remove();
+                }
+            });
+
+        });
+    </script>
+    <style>
+        [type=text] {
+            border: 1px solid #ccc;
+        }
+        .error {
+            border: 1px solid #f00;
+        }
+        .error:focus {
+            outline: #f00 solid 1px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Formulaire</h1>
+        <hr />
+    </header>
+    <section>
+        &lt;b&gt;
+        <div>
+            <label for="texte">Entrer une valeur: </label>
+            <input type="text" id="texte" placeholder="Entrer une valeur" />
+            <span id="resultTexte"></span>
+        </div>
+        <div>
+            <label for="pwd">Mot de passe: </label>
+            <input type="password" id="pwd" placeholder="Mot de passe" />
+            <button id="changeType">Voir</button>
+        </div>
+    </section>
+    <hr />
+    <section>
+        <form method="get" action="" id="form">
+            <div>
+                <label for="nom">Nom: </label>
+                <input type="text" name="nom" id="nom" placeholder="Entrer votre nom" />
+            </div>
+            <div>
+                <label for="prenom">Prénom: </label>
+                <input type="text" name="prenom" id="prenom" placeholder="Entrer votre prénom" />
+            </div>
+            <div>
+                <!-- input type="button" value="input button" />
+                <button type="button">
+                    <img src="images/dom.png" width="50px" />
+                </button>   
+                
+                <button type="submit">Button</button>
+
+                <input type="submit" value="input submit" />
+                <input type="image" src="images/dom.png" width="50px" /-->
+
+                <input type="submit" value="Envoyer" />
+            </div>
+        </form>
+    </section>
+</body>
+</html>
