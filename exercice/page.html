@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bootstrap Grid</title>
     <link rel="stylesheet" href="../bootstrap/bootstrap/css/bootstrap.min.css" />
+    <script src="../jQuery/js/jquery-3.5.1.min.js"></script>
+    <script src="../bootstrap/bootstrap/js/bootstrap.bundle.min.js"></script> <!-- inclus bootstrap + popper.js -->
+    <script>
+        let show = false; // globale
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip({
+                template: '<div class="tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner bg-light text-dark"></div></div>'
+            });
+
+            $('#toggleTooltip').on('click', function(){
+                // $('[data-toggle="tooltip"]').tooltip('toggle');
+                show = !show;
+
+                if( 'Afficher' == $('#toggleTooltip').text() ) {
+                    $(this).text('Masquer');
+                    $('[data-toggle="tooltip"]').tooltip('show');
+                } else {
+                    $(this).text('Afficher');
+                    $('[data-toggle="tooltip"]').tooltip('hide');
+                }
+            });
+
+            $('[data-toggle="tooltip"]').on('hide.bs.tooltip', function () {
+                console.log('hide');
+            });
+
+            $('[data-toggle="tooltip"]').on('show.bs.tooltip', function () {
+                console.log('show');
+            });
+        })
+    </script>
 </head>
 <body>
     <main class="container">
@@ -12,27 +44,38 @@
             <h1>Projet Bootstrap <small class="text-muted">Responsive Design</small></h1>
             <hr />
         </header>
+        <div class="text-right">
+            <button class="btn btn-link" id="toggleTooltip">Afficher</button>
+        </div>
         <div class="row">
             <section class="col-lg-8">
                 <div class="row">
                     <article class="col-md-6">
                         <img src="images/peine-de-mort.jpg" class="img-fluid img-thumbnail" alt="Une majorité de cons favorable au rétablissement de la peine de mort" title="Une majorité de cons favorable au rétablissement de la peine de mort" />
-                        <h2 class="text-truncate">Une majorité de cons favorable au rétablissement de la peine de mort</h2>
+                        <h2 class="text-truncate" data-template='<div class="tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner bg-light text-dark"></div></div>' data-toggle="tooltip" data-placement="top" title="Une majorité de cons favorable au rétablissement de la peine de mort">
+                            Une majorité de cons favorable au rétablissement de la peine de mort
+                        </h2>
                         <p>Près de 55% des cons soutiennent le retour de la peine de mort, 35%, d’entre eux soulignent que si la peine de mort venait à être réinstaurée, être contre la peine de mort devrait être puni de la peine de mort.</p>
                     </article>
                     <article class="col-md-6">
                         <img src="images/piscine.jpg" class="img-fluid img-thumbnail" alt="Malgré les avertissements, il court à la piscine : 86 morts" title="Malgré les avertissements, il court à la piscine : 86 morts" />
-                        <h2 class="text-truncate">Malgré les avertissements, il court à la piscine : 86 morts</h2>
+                        <h2 class="text-truncate" data-toggle="tooltip" data-placement="top" title="Malgré les avertissements, il court à la piscine : 86 morts">
+                            Malgré les avertissements, il court à la piscine : 86 morts
+                        </h2>
                         <p>Ce mardi, un individu au bord d’une piscine se serait mis à courir malgré l’interdiction et aurait ainsi provoqué la mort de 86 personnes.</p>
                     </article>
                     <article class="col-md-6">
                         <img src="images/poutine.jpg" class="img-fluid img-thumbnail" alt="Emmanuel Macron demande à Vladimir Poutine d’empoisonner moins gravement ses opposants politiques" title="Emmanuel Macron demande à Vladimir Poutine d’empoisonner moins gravement ses opposants politiques" />
-                        <h2 class="text-truncate">Emmanuel Macron demande à Vladimir Poutine d’empoisonner moins gravement ses opposants politiques</h2>
+                        <h2 class="text-truncate" data-toggle="tooltip" data-placement="top" title="Emmanuel Macron demande à Vladimir Poutine d’empoisonner moins gravement ses opposants politiques">
+                            Emmanuel Macron demande à Vladimir Poutine d’empoisonner moins gravement ses opposants politiques
+                        </h2>
                         <p>Après le scandale lié à l’opposant Alexeï Navalny, la France a condamné fortement la Russie et souhaite que dans un proche avenir les opposants politiques soient empoisonnés moins gravement. Analyse.</p>
                     </article>
                     <article class="col-md-6">
                         <img src="images/zombie.jpg" class="img-fluid img-thumbnail" alt="Les essais du vaccin Covid19 suspendus après que les patients ont commencé à dévorer les médecins" title="Les essais du vaccin Covid19 suspendus après que les patients ont commencé à dévorer les médecins" />
-                        <h2 class="text-truncate">Les essais du vaccin Covid19 suspendus après que les patients ont commencé à dévorer les médecins</h2>
+                        <h2 class="text-truncate" data-toggle="tooltip" data-placement="top" title="Les essais du vaccin Covid19 suspendus après que les patients ont commencé à dévorer les médecins">
+                            Les essais du vaccin Covid19 suspendus après que les patients ont commencé à dévorer les médecins
+                        </h2>
                         <p>Les essais du vaccin contre le nouveau coronavirus ont été suspendus après un léger incident au cours duquel douze médecins ont été partiellement ou entièrement dévorés.</p>
                     </article>
                 </div>

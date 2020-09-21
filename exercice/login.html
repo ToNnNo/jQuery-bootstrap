@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+    <link rel="stylesheet" href="../bootstrap/bootstrap/css/bootstrap.min.css"/>
+    <script src="../jQuery/js/jquery-3.5.1.min.js"></script>
+    <script>
+        function up(){
+            $('#password').attr('type', 'password');
+        }
+
+        function down(){
+            $('#password').attr('type', 'text');
+        }
+
+        $(function(){
+            $('#username').on('blur', function(){
+                if( $(this).val().trim() !== '') {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+
+            $('#password').on('blur', function(){
+                if( $(this).val().trim() !== '') {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+
+            $('#authentication').on('submit', function(event){
+                let hasError = false;
+                let username = $('#username');
+                let password = $('#password');
+
+                if( username.val().trim() === '') {
+                    hasError = true;
+                    username.addClass('is-invalid')
+                }
+
+                if( password.val().trim() === '') {
+                    hasError = true;
+                    password.addClass('is-invalid')
+                }
+
+                if( hasError ){
+                    event.preventDefault();
+                    $('.is-invalid:first').focus();
+                }
+            });
+
+            $('#changeFormType')
+                .on('mousedown', down).on('mouseup', up)
+                .on('keydown', down).on('keyup', up)
+        });
+    </script>
+</head>
+<body class="container-fluid bg-dark">
+
+    <section class="row min-vh-100 mt-5 align-content-start">
+        <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-xl-4 offset-xl-4 py-3 bg-white rounded">
+            <h2>Connexion</h2>
+            <hr />
+            <form method="post" action="" id="authentication">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-bounding-box" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
+                                    <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <input type="text" id="username" class="form-control rounded-right" placeholder="Identifiant" />
+                        <div class="invalid-feedback">
+                            Ce champs est obligatoire
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-lock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M11.5 8h-7a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1zm-7-1a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-7zm0-3a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <input type="password" id="password" class="form-control" placeholder="Mot de passe" />
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-outline-secondary rounded-right" id="changeFormType">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="invalid-feedback">
+                            Ce champs est obligatoire
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-outline-primary btn-block">S'identifier</button>
+                </div>
+            </form>
+            <hr />
+            <footer>
+                <p class="text-center">
+                    <a href="#">Mot de passe oublié ?</a> | <a href="#">Créer un compte</a>
+                </p>
+            </footer>
+        </div>
+    </section>
+
+</body>
+</html>
